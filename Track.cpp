@@ -5,20 +5,12 @@ Track::Track() { /*std::cout << "New track created" << std::endl;*/ }
 Track::~Track() { /*std::cout << "Track destroyed" << std::endl;*/}
 
 std::string Track::htmlString() {
-    std::cout << "Called" << std::endl;
-    std::string holder;
-    holder += "\t<li><p>" + title() + "</p>\n";
-    std::cout << "Finished " << std::endl;
-    holder += "\t\t<ul>\n";
-    holder += "\t\t\t<li><p>Artist Name: " + artistName() + "</p></li>\n";
-    holder += "\t\t\t<li><p>Album Name: " + albumName() + "</p></li>\n";
-    holder += "\t\t\t<li><p>Album ID: " + std::to_string(albumID()) + "</p></li>\n";
-    holder += "\t\t\t<li><p>Duration: " + duration() + "</p></li>\n";
-    holder += "\t\t\t<li><p>Position: " + position() + "</p></li>\n";
-    holder += "\t\t</ul>\n";
-    holder += "\t</li>\n";
-
-    return holder;
+    std::string html;
+    html += "\t<tr class=\"tracks\">\n";
+    html += "\t\t<td class=\"trackName\">" + title() +"</td>\n";
+    html += "\t\t<td>" + duration() + "</td>\n";
+    html += "\t</tr>\n";
+    return html;
 }
 
 void Track::print() {

@@ -1,26 +1,30 @@
 #include "Artists.hpp"
-#include "Artist.hpp"
-#include "Albums"
 #include <string>
 #include <fstream>
+#include <iostream>
 
 Artists::Artists() {}
-Artists::~Artists() {}
+Artists::~Artists() {
+  for (auto i : *listOfArtists())
+    delete i;
+}
 
 int Artists::numArtists() {
     return _listOfDataObjects->size();
 }
 
 void Artists::addArtist(Artist *artist) {
-    _listOfDataObjects->push_back(std::make_shared<Artist>(*artist));
+    //_listOfDataObjects->push_back(std::make_shared<Artist>(*artist));
+    _listOfDataObjects->push_back(artist);
 }
 
 
 Artist* Artists::artistWithID(int aID) {
-    for (auto i: *_listOfDataObjects) {
+    for (auto i: *listOfArtists()) {
         if (i->valueForIntegerAttribute("artist_id") == aID)
             return i;
     }
+    return nullptr;
 }
 
 void Artists::loadArtistsFromFile(std::string fileName) {
@@ -35,18 +39,12 @@ std::string Artists::htmlString() {
 }
 
 
-void Artists::setAlbumsForArtists(Album *albums) {
-    //
-}
 
-void setImagesForArtists(ArtistImages *ai) {
-    //
-}
-
-std::vector<Artist *>* Artists::listOfArtists() {
-    return (std::vector<Artist *> *) _listOfDataObjects;
-}
 
 void Artists::runAsserts() {
   std::cout << "Run asserts in artists is being called" << std::endl;
+  for (auto i: *_listOfDataObjects) {
+    std::cout << "Inside for loop" << std::endl;
+    i->print();
+  }
 }

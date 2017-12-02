@@ -1,7 +1,7 @@
 #include "AlbumImage.hpp"
 
 AlbumImage::AlbumImage() {}
-AlbumImage::~AlbumImage() { std::cout << "Called Destructor" << std::endl; }
+AlbumImage::~AlbumImage() {}
 
 std::string AlbumImage::height() {
     if ( cachedheight )
@@ -15,7 +15,7 @@ std::string AlbumImage::type() {
         return _type;
     cachedtype = true;
     return _type = valueForStringAttribute("type");
-        
+
 }
 
 std::string AlbumImage::uri() {
@@ -30,7 +30,7 @@ int AlbumImage::width() {
         return _width;
     cachedwidth = true;
     return _width = valueForIntegerAttribute("width");
-    
+
 }
 
 int AlbumImage::album_id() {
@@ -38,4 +38,21 @@ int AlbumImage::album_id() {
         return _albumID;
     cachedalbumid = true;
     return _albumID = valueForIntegerAttribute("album_id");
+}
+
+void AlbumImage::print() {
+  std::cout << "Print in albumimage is being called " << std::endl;
+    std::cout << height() << std::endl;
+    std::cout << type() << std::endl;
+    std::cout << uri() << std::endl;
+    std::cout << width() << std::endl;
+    std::cout << album_id() << std::endl;
+}
+
+std::string AlbumImage::htmlString() {
+  std::string html;
+  html += "<img class='image' height='" + height() + "' ";
+  html += "src='" + uri() + "' ";
+  html += "width='" + std::to_string(width()) + "'>";
+  return html;
 }

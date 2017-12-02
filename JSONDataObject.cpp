@@ -2,8 +2,8 @@
 #include <typeinfo>
 
 JSONDataObject::JSONDataObject() {
-    _listOfDataItems = std::make_shared<std::vector<std::shared_ptr<JSONDataItem>>>();
-    //_listOfDataItems = new std::vector<JSONDataItem *>;
+    //_listOfDataItems = std::make_shared<std::vector<std::shared_ptr<JSONDataItem>>>();
+    _listOfDataItems = new std::vector<JSONDataItem *>;
 }
 
 JSONDataObject::~JSONDataObject() {
@@ -23,9 +23,10 @@ void JSONDataObject::parseFromJSONstream(std::fstream &stream) {
     }
 
     do {
-        auto jsitem = std::make_shared<JSONDataItem>();
+        //auto jsitem = std::make_shared<JSONDataItem>();
         //JSONDataItem *jsitem = new JSONDataItem();
         //std::make_shared<Album>(*album)
+        auto jsitem = new JSONDataItem();
 
         jsitem->parseJSONItem(stream);
         _listOfDataItems->push_back(jsitem);

@@ -13,8 +13,8 @@ public:
     JSONDataObject();
     virtual ~JSONDataObject();
     //std::vector<JSONDataItem *> *listOfDataItems() const { return _listOfDataItems; }
-    std::shared_ptr<std::vector<std::shared_ptr<JSONDataItem>>> listofDataItems() { return _listOfDataItems; }
-    //std::vector<JSONDataItem *>* listofDataItems() { return _listOfDataItems; }
+    //std::shared_ptr<std::vector<std::shared_ptr<JSONDataItem>>> listofDataItems() { return _listOfDataItems; }
+    std::vector<JSONDataItem *>* listofDataItems() { return _listOfDataItems; }
     void parseFromJSONstream(std::fstream &stream);
     virtual void print();
     std::string valueForStringAttribute(std::string s);
@@ -22,8 +22,8 @@ public:
 
 private:
     //std::vector<JSONDataItem *> *_listOfDataItems;
-    //std::vector<JSONDataItem *> *_listOfDataItems;
-    std::shared_ptr<std::vector<std::shared_ptr<JSONDataItem>>> _listOfDataItems;
+    std::vector<JSONDataItem *> *_listOfDataItems;
+    //std::shared_ptr<std::vector<std::shared_ptr<JSONDataItem>>> _listOfDataItems;
 
 };
 

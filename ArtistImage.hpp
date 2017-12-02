@@ -14,6 +14,9 @@ public:
     std::string uri();
     std::string type();
 
+    void print();
+    std::string htmlString();
+
 private:
     int _height{0}, _artist_id{0}, _width{0};
     std::string _uri{""}, _type{""};
@@ -21,3 +24,7 @@ private:
 };
 
 #endif
+
+/*
+{"height": 600, "uri": "http://cWolf.cs.sonoma.edu/~cs315/projects/project5/images/A-82730-1419714988-9675.jpeg", "artist_id": 82730, "width": 600, "type": "primary"}
+*/

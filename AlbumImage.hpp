@@ -1,5 +1,5 @@
 #ifndef __albumimage__hpp
-#define __albumimage_hpp
+#define __albumimage__hpp
 
 #include "JSONDataObject.hpp"
 #include <string>
@@ -15,6 +15,9 @@ public:
     std::string uri();
     int width();
     int album_id();
+
+    void print();
+    std::string htmlString();
 
 private:
     std::string _height{""}, _type{""}, _uri{""};

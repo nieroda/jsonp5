@@ -1,5 +1,8 @@
 #include "ArtistImage.hpp"
 
+#define o std::cout
+#define e std::endl;
+
 ArtistImage::ArtistImage() {}
 ArtistImage::~ArtistImage() {}
 
@@ -36,4 +39,21 @@ std::string ArtistImage::type() {
         return _type;
     cachedtype = true;
     return _type = valueForStringAttribute("type");
+}
+
+void ArtistImage::print() {
+  o << "Called print in artist image" << e;
+  o << "Height: " << height() << e;
+  o << "Artist ID " << artistID() << e;
+  o << "Width: " << width() << e;
+  o << "URI: " << uri() << e;
+  o << "Type: " << type() << e;
+}
+
+std::string ArtistImage::htmlString() {
+  std::string html;
+  html += "<img class='image' height='" + std::to_string(height()) + "' ";
+  html += "src='" + uri() + "' ";
+  html += "width='" + std::to_string(width()) + "'>";
+  return html;
 }

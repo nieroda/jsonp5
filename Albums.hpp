@@ -18,11 +18,15 @@ public:
   void loadAlbumsFromFile(std::string fileName);
   std::string htmlString();
    //set track for album, set track for image
-   std::shared_ptr<std::vector<std::shared_ptr<JSONDataObject>>> listofAlbums() { return _listOfDataObjects; }
+   //std::shared_ptr<std::vector<std::shared_ptr<JSONDataObject>>> listofAlbums() { return _listOfDataObjects; }
+   std::vector<Album *> *listofAlbums() { return (std::vector<Album *> *) _listOfDataObjects; }
    //std::vector<std::shared_ptr<Albums>> listovAlbums() { return _listOfDataObjects.get(); }
    //std::shared_ptr<std::vector<std::shared_ptr<reinterpret_cast<Album *>(_listOfDataObjects.get())>>> listovAlbums() { return _listOfDataObjects; }
-   std::shared_ptr<JSONDataObject> jsonObjectNode() { return std::make_shared<Album>(); }
+   //std::shared_ptr<JSONDataObject> jsonObjectNode() { return std::make_shared<Album>(); }
+   JSONDataObject *jsonObjectNode() { return new Album(); }
+   Albums *albumswithArtistID(int aID);
   void runAsserts();  // used for checking the integrity of this class.
+  void printIndividualAlbums();
 };
 
 #endif

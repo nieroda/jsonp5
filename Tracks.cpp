@@ -1,7 +1,10 @@
 #include "Tracks.hpp"
 
 Tracks::Tracks() {}
-Tracks::~Tracks() {}
+Tracks::~Tracks() {
+    for (auto i : *listOfTracks())
+      delete i;
+}
 
 int Tracks::numTracks() {
   return _listOfDataObjects->size();
@@ -9,21 +12,22 @@ int Tracks::numTracks() {
 
 void Tracks::addTrack(Track *track) {
   //std::cout << "adding track" << std::endl;
-    _listOfDataObjects->push_back(std::make_shared<Track>(*track));
+    //_listOfDataObjects->push_back(std::make_shared<Track>(*track));
+    _listOfDataObjects->push_back(track);
 }
 
 Track* Tracks::trackwithAlbumID(int aID) {
-    for (auto i : *_listOfDataObjects) {
+    for (auto i : *listOfTracks()) {
       if (i->valueForIntegerAttribute("album_id") == aID)
-        return reinterpret_cast<Track *>(i.get());
+        return i;
   }
 }
 
-std::shared_ptr<Tracks> Tracks::trackswithAlbumID(int aID) {
-    std::shared_ptr<Tracks> track = std::make_shared<Tracks>();
-    for (auto i : *_listOfDataObjects) {
+Tracks* Tracks::trackswithAlbumID(int aID) {
+    Tracks *track = new Tracks();
+    for (auto i : *listOfTracks()) {
       if (i->valueForIntegerAttribute("album_id") == aID) {
-        track->addTrack(reinterpret_cast<Track*>(i.get()));
+        track->addTrack(i);
       }
     }
     return track;
@@ -37,13 +41,20 @@ void Tracks::loadTracksFromFile(std::string fileName) {
 }
 
 std::string Tracks::htmlString() {
-  std::cout << "Bleh :: Blah" << std::endl;
+  std::string html;
+  html += "<h2> TrackList </h2>\n";
+  html += "<table class=\"tracks\">\n";
+  for (auto i : *listOfTracks())
+    html += i->htmlString();
+  html += "</table>\n";
+
+  return html;
 }
 
 void Tracks::runAsserts() {
   std::cout << "Run asserts in track is being called " << std::endl;
-  for (auto i: *_listOfDataObjects) {
-    std::cout << "Inside for loop" << std::endl;
+
+  for (auto i : *listOfTracks()) {
     i->print();
   }
 }

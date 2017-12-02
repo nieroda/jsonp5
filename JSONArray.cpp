@@ -3,8 +3,8 @@
 #include <vector>
 
 JSONArray::JSONArray() {
-    _listOfDataObjects = std::make_shared<std::vector<std::shared_ptr<JSONDataObject>>>();
-    //_listOfDataObjects = new std::vector<JSONDataObject *>;
+    //_listOfDataObjects = std::make_shared<std::vector<std::shared_ptr<JSONDataObject>>>();
+    _listOfDataObjects = new std::vector<JSONDataObject *>;
 }
 
 
